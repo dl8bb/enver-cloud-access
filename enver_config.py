@@ -1,6 +1,18 @@
 
-CONFIG = {
-    'station_id': 666, # insert your own station id (your inverter) here
+from os.path import expanduser
 
-    'current_base_url': 'http://www.envertecportal.com/ApiInverters/QueryTerminalReal',  # adjust this if API changes
+def readPasswdFromFile(passwdFileName):
+    if passwdFileName.startswith('~'):
+        passwdFileName = expanduser(passwdFileName)
+    pfile = open(passwdFileName, 'r')
+    pw = pfile.readline()
+    pfile.close()
+
+    return str(pw.rstrip("\n"))
+
+CONFIG = {
+    'station_id': readPasswdFromFile("~/.stationId"),
+
+#    'current_base_url': 'https://www.envertecportal.com/ApiStations',
+    'current_base_url': 'https://www.envertecportal.com/ApiInverters/QueryTerminalReal',  # adjust this if API changes
 }
