@@ -94,22 +94,38 @@ def updateInflux(gwsn, sn, status, timeStamp, data):
 def mapData(data):
     res = dict()
 
-    res['ACCURRENCY'] = float(data.get('ACCURRENCY'))
-    res['ACVOLTAGE'] = float(data.get('ACVOLTAGE'))
-    res['DAYENERGY'] = float(data.get('DAYENERGY'))
-    res['DCVOLTAGE'] = float(data.get('DCVOLTAGE'))
-    res['ENERGY'] = float(data.get('ENERGY'))
-    res['FREQUENCY'] = float(data.get('FREQUENCY'))
-    res['GATEWAYALIAS'] = data.get('GATEWAYALIAS')
-    res['GATEWAYSN'] = data.get('GATEWAYSN')
-    res['POWER'] = float(data.get('POWER'))
-    res['SITETIME'] = data.get('SITETIME')
-    res['SN'] = data.get('SN')
-    res['SNALIAS'] = data.get('SNALIAS')
-    res['SNID'] = data.get('SNID')
-    res['STATIONID'] = stationid     # data.get('STATIONID')
-    res['STATUS'] = data.get('STATUS')
-    res['TEMPERATURE'] = float(data.get('TEMPERATURE'))
+    if data.get('ACCURRENCY') is not None:
+      res['ACCURRENCY'] = float(data.get('ACCURRENCY'))
+    if data.get('ACVOLTAGE') is not None:
+      res['ACVOLTAGE'] = float(data.get('ACVOLTAGE'))
+    if data.get('DAYENERGY') is not None:
+      res['DAYENERGY'] = float(data.get('DAYENERGY'))
+    if data.get('DCVOLTAGE') is not None:
+      res['DCVOLTAGE'] = float(data.get('DCVOLTAGE'))
+    if data.get('ENERGY') is not None:
+      res['ENERGY'] = float(data.get('ENERGY'))
+    if data.get('FREQUENCY') is not None:
+      res['FREQUENCY'] = float(data.get('FREQUENCY'))
+    if data.get('GATEWAYALIAS') is not None:
+      res['GATEWAYALIAS'] = data.get('GATEWAYALIAS')
+    if data.get('GATEWAYSN') is not None:
+      res['GATEWAYSN'] = data.get('GATEWAYSN')
+    if data.get('POWER') is not None:
+      res['POWER'] = float(data.get('POWER'))
+    if data.get('SITETIME') is not None:
+      res['SITETIME'] = data.get('SITETIME')
+    if data.get('SN') is not None:
+      res['SN'] = data.get('SN')
+    if data.get('SNALIAS') is not None:
+      res['SNALIAS'] = data.get('SNALIAS')
+    if data.get('SNID') is not None:
+      res['SNID'] = data.get('SNID')
+    if data.get('STATIONID') is not None:
+      res['STATIONID'] = stationid     # data.get('STATIONID')
+    if data.get('STATUS') is not None:
+      res['STATUS'] = data.get('STATUS')
+    if data.get('TEMPERATURE') is not None:
+      res['TEMPERATURE'] = float(data.get('TEMPERATURE'))
 
     return res
 

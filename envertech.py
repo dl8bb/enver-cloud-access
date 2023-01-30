@@ -97,6 +97,8 @@ def main():
 
     response = get_page_stationInfo(str(stationId))['Data']
 
+    pprint(response)
+
     response['Power'] = float(response['Power'])
     response['Etoday'] = float(response['Etoday'])
 
@@ -116,15 +118,25 @@ def main():
 
     # "UnitEToday" : "0.31 KWh",
     response['StrUnitEToday'] = response['UnitEToday']
-    response['UnitEToday'] = float(response['UnitEToday'].replace(" KWh", ""))
+    if (response['UnitEToday'].endswith(" KKh")):
+      response['UnitEToday'] = float(response['UnitEToday'].replace(" KKh", ""))
+    else:
+      response['UnitEToday'] = float(response['UnitEToday'].replace(" KWh", ""))
 
     # "UnitETotal" : "26.94 KWh",
+    # "UnitETotal" : "1.34 MWh"
     # response['StrUnitETotal'] = response['UnitETotal']
-    response['UnitETotal'] = float(response['UnitETotal'].replace(" KWh", ""))
+    if (response['UnitETotal'].endswith(" MWh")):
+      response['UnitETotal'] = float(response['UnitETotal'].replace(" MWh", "")) * 1000
+    else:
+      response['UnitETotal'] = float(response['UnitETotal'].replace(" KWh", ""))
 
     # "UnitEYear" : "26.94 KWh"
     # response['StrUnitEYear'] = response['UnitEYear']
-    response['UnitEYear'] = float(response['UnitEYear'].replace(" KWh", ""))
+    if (response['UnitEYear'].endswith(" MWh")):
+      response['UnitEYear'] = float(response['UnitEYear'].replace(" MWh", "")) * 1000
+    else:
+      response['UnitEYear'] = float(response['UnitEYear'].replace(" KWh", ""))
 
     # "UnitCapacity" : "1.2 KWp"
     response['StrUnitCapacity'] = response['UnitCapacity']
